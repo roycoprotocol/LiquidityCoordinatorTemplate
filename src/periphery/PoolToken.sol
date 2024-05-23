@@ -2,14 +2,15 @@
 
 pragma solidity ^0.8.24;
 
-import {ERC20} from "../lib/solmate/src/tokens/ERC20.sol";
-import {SafeTransferLib} from "../lib/solmate/src/utils/SafeTransferLib.sol";
-import {ILiquidityCoordinator} from "./interfaces/ILiquidityCoordinator.sol";
-import {FixedPointMathLib} from "../lib/solmate/src/utils/FixedPointMathLib.sol";
+import {ERC20} from "../../lib/solmate/src/tokens/ERC20.sol";
+import {SafeTransferLib} from "../../lib/solmate/src/utils/SafeTransferLib.sol";
+import {ILiquidityCoordinator} from "../interfaces/ILiquidityCoordinator.sol";
+import {FixedPointMathLib} from "../../lib/solmate/src/utils/FixedPointMathLib.sol";
 
 contract PoolToken is ERC20 {
     using SafeTransferLib for ERC20;
     using FixedPointMathLib for uint256;
+
     ILiquidityCoordinator public immutable COORDINATOR;
     address public immutable POOLMANAGER;
 
@@ -21,6 +22,7 @@ contract PoolToken is ERC20 {
         require(isApprovedMinter[msg.sender], "Only minter can call this function");
         _;
     }
+
     modifier onlyPoolManager() {
         require(msg.sender == POOLMANAGER, "Only PoolManager can call this function");
         _;
@@ -41,7 +43,7 @@ contract PoolToken is ERC20 {
     }
 
     function addMinter(address minter) external onlyPoolManager {
-        require (!isApprovedMinter[minter], "Already a minter");
+        require(!isApprovedMinter[minter], "Already a minter");
         isApprovedMinter[minter] = true;
     }
 
@@ -110,7 +112,7 @@ contract PoolToken is ERC20 {
 
         uint256 n = assets.length;
         for (uint256 i = 0; i < n;) {
-            amounts[i] = supply == 0 ? shares*initialAssetsPerPoolToken[i] : shares.mulDivDown(totals[i], supply);
+            amounts[i] = supply == 0 ? shares * initialAssetsPerPoolToken[i] : shares.mulDivDown(totals[i], supply);
             ++i;
         }
     }

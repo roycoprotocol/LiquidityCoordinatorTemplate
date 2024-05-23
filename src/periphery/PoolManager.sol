@@ -28,12 +28,7 @@ contract PoolManager is Ownable2Step {
     ) external {
         string memory symbol = "ROYCO-POOLTOKEN"; //TODO: cooler symbol
         PoolToken poolToken = new PoolToken(
-            address(this),
-            _liquidityCoordinator,
-            _name,
-            symbol,
-            _timelockExpiry,
-            _initialAssetsPerPoolToken
+            address(this), _liquidityCoordinator, _name, symbol, _timelockExpiry, _initialAssetsPerPoolToken
         );
         poolToken.addMinter(defaultMinter);
         poolTokens.push(address(poolToken));
