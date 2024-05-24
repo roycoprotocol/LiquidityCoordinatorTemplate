@@ -1,6 +1,6 @@
 ### Royco Liquidity Coordinator Template Repository
 
-Full documentation of the Royco Protocol, and how to deploy a Liquidity Coordinator can be found in the [technical documentation](https://waymont.notion.site/Royco-Technical-Docs-bacd16fed2f849b1a6d2fd7d8ad6994d)
+Full documentation of the Royco Protocol, and how to deploy a Liquidity Coordinator can be found in the technical documentation.
 
 #### Quickstart:
 1. In `./src/LiquidityCoordinator.sol`, set the `tokens` array to the ERC20 addresses of the assets which the Liquidity Coordinator should intake
